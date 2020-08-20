@@ -46,3 +46,10 @@ jobs:
       #   run: docker exec builder git diff --exit-code
       - name: make test
         run: docker exec builder make test
+  swagger-codegen-cli:
+    runs-on: ubuntu-latest
+    container: swaggerapi/swagger-codegen-cli
+    steps:
+      - uses: actions/checkout@v2
+      - name: run the main swagger.yml validation
+        run: java -jar /opt/swagger-codegen-cli/swagger-codegen-cli.jar validate -i ./api/swagger.yml
