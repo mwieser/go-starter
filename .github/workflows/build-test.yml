@@ -34,6 +34,8 @@ jobs:
         image: mailhog/mailhog
     steps:
       - uses: actions/checkout@v2
+      - name: Discard dockerignore for the build
+        run: rm .dockerignore
       - name: Build the Docker image
         run: docker build --target builder --file Dockerfile --tag allaboutapps/go-starter:${GITHUB_SHA:8} .
       - name: Create container
